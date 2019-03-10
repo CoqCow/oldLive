@@ -1,0 +1,84 @@
+create table anchor
+(
+	userId int not null comment '主播id==用户id'
+		primary key,
+	anchorCategory varchar(20) null comment '主播类别：分为组织，学院，学生，教师等等',
+	playTime int null comment '播放总时长',
+	totalUpvoteNum int null comment '总共被点赞个数',
+	followedNumber int null comment '总共被关注个数',
+	applyAnchorTime datetime null comment '注册主播时间',
+	totalGiftsNumber int null comment '获得礼物个数'
+)
+comment '主播表'
+;
+
+create table follow
+(
+	userId int null,
+	anchorId int null,
+	followTime datetime null
+)
+comment '关注表(收藏表)'
+;
+
+create table live
+(
+	liveId int auto_increment comment '直播id，自增长，主键，'
+		primary key,
+	userId int not null comment '用户id==主播id 外键',
+	liveName varchar(20) null comment '直播名称',
+	liveDescription varchar(50) null comment '直播描述',
+	liveType varchar(20) null comment '直播类型：体育，娱乐，官方',
+	livePwd varchar(50) null comment '直播密码',
+	liveStartTime datetime null comment '直播开始时间',
+	liveEndTime datetime null comment '直播结束时间',
+	audienceNum int null comment '当前观众个数',
+	upvoteNum int null comment '当前点赞个数',
+	giftNum int null comment '当前礼物个数',
+	screenShot varchar(50) null comment '最新截图地址',
+	constraint live_liveId_uindex
+		unique (liveId),
+	constraint live_anchor_userId_fk
+		foreign key (userId) references live.anchor (userId)
+)
+comment '直播表'
+;
+
+create index live_anchor_userId_fk
+	on live (userId)
+;
+
+create table user
+(
+	userId int auto_increment comment '用户id'
+		primary key,
+	organizationName varchar(50) null comment '组织名称',
+	number int null comment '学号或者编号',
+	password varchar(20) null comment '密码',
+	name varchar(50) null comment '姓名',
+	college varchar(50) null comment '学院',
+	nickName varchar(50) null comment '昵称',
+	avatar varchar(50) null comment '头像',
+	signature varchar(100) null comment '个性签名',
+	phoneNumber varchar(50) null comment '手机号码',
+	whetherAnchor int null comment '是否主播',
+	followNumber int null comment '关注个数',
+	registrationTime datetime null comment '注册时间',
+	constraint User_userId_uindex
+		unique (userId)
+)
+comment '用户表'
+;
+
+create table view
+(
+	liveId int null comment '直播id',
+	userId int null comment '主播id==用户id',
+	viewDuration int null comment '观看时长',
+	userUpvoteNum int null comment '用户点赞个数',
+	sendGiftNum int null comment '送礼物个数',
+	viewTime datetime null comment '开始观看时间'
+)
+comment '观看表'
+;
+

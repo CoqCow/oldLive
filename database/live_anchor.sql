@@ -1,0 +1,4 @@
+INSERT INTO live.anchor (userId, anchorCategory, playTime, totalUpvoteNum, followedNumber, applyAnchorTime, totalGiftsNumber) VALUES (1, '教师', 1000, 500, 100, '2017-07-17 00:00:00', 100);
+INSERT INTO live.anchor (userId, anchorCategory, playTime, totalUpvoteNum, followedNumber, applyAnchorTime, totalGiftsNumber) VALUES (2, '学生', 1000, 500, 333, null, 20);
+INSERT INTO live.anchor (userId, anchorCategory, playTime, totalUpvoteNum, followedNumber, applyAnchorTime, totalGiftsNumber) VALUES (17, '1', 1, 1, 1, '2017-07-15 12:55:55', 1);
+INSERT INTO live.anchor (userId, anchorCategory, playTime, totalUpvoteNum, followedNumber, applyAnchorTime, totalGiftsNumber) VALUES (18, '1', 1, 1, 1, '2017-07-15 12:55:55', 1);
